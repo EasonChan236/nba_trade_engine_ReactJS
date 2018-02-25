@@ -9,6 +9,6 @@ cd my_app
 
 npm install react-router-dom
 
-copy the files in the github to my_app
+copy the files in this github to my_app
 
-npm start
+npm run start
