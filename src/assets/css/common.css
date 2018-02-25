@@ -1,0 +1,178 @@
+
+.forum-send-button {
+
+	width:88px;
+	text-align: center;
+	margin-top:20px;
+	margin-left: auto
+
+}
+
+.forum-control-input {
+	
+	margin-top:20px;
+
+}
+
+
+.forum-overflow{
+	overflow: scroll;
+}
+
+#currentTab{
+    background: #68dff0;
+}
+
+#currentTabFont{
+    color: #FFF;
+}
+
+#currentTabIcon{
+    color: #FFF;
+}
+
+.column05{
+
+		width: 5%;
+}
+.column1{
+
+		width: 10%;
+}
+.column2{
+
+		width: 20%;
+}
+.column225{
+		width: 22.5%;
+}
+.column3{
+
+		width: 30%;
+}
+.column4{
+
+		width: 40%;
+}
+.column5{
+
+		width: 50%;
+}
+.column6{
+
+		width: 60%;
+}
+.column8{
+
+		width: 80%;
+}
+
+.header, .footer {
+    min-height: 60px;
+    padding: 0 15px;
+}
+
+.header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1002;
+}
+
+.black-bg {
+    background: linear-gradient(to right, #006BB6 ,  #FFFFFF);
+    border-bottom: 1px solid #c9aa5f;
+}
+
+/*footer*/
+.site-footer {
+
+    background: linear-gradient(to right, #006BB6 ,  #FFFFFF);
+    color: #fff;
+    padding: 10px 0;
+
+}
+
+
+
+a.logo {
+    font-size: 20px;
+    color: #ffffff;
+    float: left;
+    margin-top: 15px;
+    text-transform: uppercase;
+}
+
+a.logo b {
+    font-weight: 900;
+}
+
+a.logo:hover, a.logo:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+a.logo span {
+    color: #68dff0;
+}
+
+
+ul.top-menu > li > .logout {
+	color: #f2f2f2;
+	font-size: 12px;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border: 1px solid #64c3c2 !important;
+	padding: 5px 15px;
+	margin-right: 15px;
+	background: #797979;
+	margin-top: 15px;
+}
+
+.text-center{
+	text-align: center;
+}
+.centered {
+	text-align: center;
+}
+
+.goleft {
+	text-align: left;
+}
+
+.goright {
+	text-align: right;
+}
+
+.mt {
+	margin-top: 25px;
+}
+
+.mb {
+	margin-bottom: 25px;
+}
+
+.ml {
+	margin-left: 5px;
+	}
+
+.no-padding {
+	padding: 0 !important;
+}
+
+.no-margin {
+	margin: 0 !important;
+}
+
+/*Exclusive Theme Colors Configuration*/
+
+.label-theme {
+	background-color: #68dff0;
+}
+
+.bg-theme {
+	background-color: #0761aa;
+}
+
+
+

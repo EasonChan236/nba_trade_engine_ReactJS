@@ -1,12 +1,26 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Home from './Home';
-import Login from './Login';
+import Header from './Header';
+import Sidebar from './Sidebar';
+import Footer from './Footer'
 
 class App extends Component {
    render() {
       return (
-         <Router>
+         <div>
+         <section id="container" >
+            <Header />
+            <Sidebar />
+            <Footer />
+         </section>
+         </div>
+      );
+   }
+}
+export default App;
+
+{/*
+<Router>
             <div>
                <h2>Welcome to React Router Tutorial</h2>
                <ul>
@@ -21,7 +35,4 @@ class App extends Component {
                </Switch>
             </div>
          </Router>
-      );
-   }
-}
-export default App;
+*/}
