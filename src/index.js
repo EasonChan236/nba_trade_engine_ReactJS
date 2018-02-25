@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
 import App from './App';
+import LoginForm from './LoginForm';
 
-render(<App />, document.getElementById('app'));
+render(<LoginForm />, document.getElementById('app'));
