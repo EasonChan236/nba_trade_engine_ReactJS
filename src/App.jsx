@@ -102,6 +102,8 @@ class App extends Component {
 
    };
    toggleHandler(i){
+      if (! this.state.status || !this.state.tradesInProcess|| !this.state.tradesCompleted||
+         this.state.tradesCompleted.length==0||this.state.tradesInProcess.length==0|| this.state.status.length ==0 ) return;
       if (i===9){
          let tempCompleted = this.state.tradesCompleted.slice();
          let tempInProcess = this.state.tradesInProcess.slice();
