@@ -7,6 +7,8 @@ import Pick from './Pick';
 import Roster from './Roster';
 import Todo from './Todo';
 import Forum from './Forum';
+import TradeHistory from './TradeHistory';
+import Initiate from './Initiate';
 
 class App extends Component {
    constructor(props) {
@@ -16,24 +18,6 @@ class App extends Component {
          name: "Ed Stefanski",
          photo: '76GM',
          editing: "",
-         checkList: [
-            {info:"The trade is initiated.",id : 1},
-            {info:"Team A shows its interest in Team B's asset.",id : 2},
-            {info:"Team A offers appropriate asset to match the trade.",id : 3},
-            {info:"The league confirms that the value of each team's assets matches.",id : 4},
-            {info:"Team B shows its interest in the asset Team A offered.",id : 5},
-            {info:"Team B accepts the trade.",id : 6},
-            {info:"The trade is sent to league for approvement.",id : 7},
-            {info:"The league approves the trade.",id : 8},
-            {info:"The players pass the phycial.",id : 9},
-            {info:"The trade is completed.",id : 10}
-         ],
-
-         status: [
-            {s:[1,1,1,-1,-1,-1,-1,-1,-1,-1], id:1},
-            {s:[1,1,1,-1,-1,-1,-1,-1,-1,-1], id:2},
-            {s:[1,1,1,1,1,1,1,1,1,1], id:3}
-         ],
          messages: [
             {
                message:[
@@ -67,17 +51,85 @@ class App extends Component {
                id :1
             },
 
+         ],
+         checkList: [
+            {info:"The trade is initiated.",id : 1},
+            {info:"Team A shows its interest in Team B's asset.",id : 2},
+            {info:"Team A offers appropriate asset to match the trade.",id : 3},
+            {info:"The league confirms that the value of each team's assets matches.",id : 4},
+            {info:"Team B shows its interest in the asset Team A offered.",id : 5},
+            {info:"Team B accepts the trade.",id : 6},
+            {info:"The trade is sent to league for approvement.",id : 7},
+            {info:"The league approves the trade.",id : 8},
+            {info:"The players pass the phycial.",id : 9},
+            {info:"The trade is completed.",id : 10}
+         ],
+
+         status: [
+            [1,1,1,-1,-1,-1,-1,-1,-1,-1],
+            [1,1,1,-1,-1,-1,-1,-1,-1,-1]
+         ],
+         tradesInProcess:[
+            {
+               team: "Cavaliers",
+               obtain: ["Isaiah THomas",],
+               send: ["Markelle Fultz",]
+            },
+            {
+               team: "haha",
+               obtain:["jaja"],
+               send: ["lala"]
+            }
+         ],
+         tradesCompleted:[
+            {
+               team: "Nets",
+               obtain: ["Trevor Booker"],
+               send: ["Jahlil Okafor","Nik Stauskas","a future second-round pick"]
+            },
+            {
+               team: "haha",
+               obtain:["jaja"],
+               send: ["lala"]
+            }
+
          ]
       }
       this.toggleHandler = this.toggleHandler.bind(this);
       this.sendMessageHandler = this.sendMessageHandler.bind(this);
       this.handleChange=this.handleChange.bind(this);
+      this.deleteTradeHandler = this.deleteTradeHandler.bind(this);
 
    };
    toggleHandler(i){
-      let temp = this.state.status.slice();
-      temp[0].s[i] = -temp[0].s[i];
-      this.setState({status: temp});
+      if (i===9){
+         let tempCompleted = this.state.tradesCompleted.slice();
+         let tempInProcess = this.state.tradesInProcess.slice();
+
+         tempCompleted.push(tempInProcess[0]);
+         console.log(tempInProcess[0]);
+         
+         this.deleteTradeHandler(0);
+         this.setState({tradesCompleted:tempCompleted});
+      }
+      else{
+         let temp = this.state.status.slice();
+         // can only check the item in order or cancel the item in reverse order
+         if (((i===1 || temp[0][i-1]===1)&&temp[0][i]===-1) || (temp[0][i]===1&&temp[0][i+1]===-1)) 
+            temp[0][i] = -temp[0][i];
+         this.setState({status: temp});
+      }
+
+   };
+   deleteTradeHandler(i){
+      let tempStatus = this.state.status.slice();
+      let tempTrade = this.state.tradesInProcess.slice();
+
+      tempStatus.splice(i,1);
+      tempTrade.splice(i,1);
+
+      this.setState({status:tempStatus});
+      this.setState({tradesInProcess:tempTrade});
    };
    sendMessageHandler(e){
       let temp = this.state.messages.slice();
@@ -91,14 +143,19 @@ class App extends Component {
    handleChange(e) {
       this.setState({editing: e.target.value});
    };
+   
    render() {
       return (
          <div>
          <section id="container" >
             <Header />
             <Sidebar />
-            {/*<Todo  toggleHandler = {this.toggleHandler} checkList={this.state.checkList} 
-               //status = {this.state.status[0].s}/>  */}
+            {/*<Roster />*/}
+            {/*<Pick />*/}
+            <TradeHistory status = {this.state.status} tradesInProcess={this.state.tradesInProcess}
+                           tradesCompleted={this.state.tradesCompleted} deleteTradeHandler={this.deleteTradeHandler}/>
+            <Todo  toggleHandler = {this.toggleHandler} checkList={this.state.checkList} 
+               status = {this.state.status[0]}/> 
             <Forum sendMessageHandler={this.sendMessageHandler } messages={this.state.messages[0].message} 
                   editing={this.state.editing} handleChange={this.handleChange} />
             <Footer />

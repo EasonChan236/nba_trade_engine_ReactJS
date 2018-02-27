@@ -34,7 +34,7 @@ class Todo extends Component {
                             <tr key = {i}>
                                 <td>{i+1}</td>
                                       <td>
-                                      <span className={this.props.status[i]==1 ? "btn btn-success btn" : "btn btn-default"} 
+                                      <span className={(this.props.status && this.props.status.length > 0 && this.props.status[i]===1) ? "btn btn-success btn" : "btn btn-default"} 
                                           onClick={() =>this.props.toggleHandler(i)} ><i className="fa fa-check"></i></span></td>
                                 <td>
                                       <span >{l.info}</span>
