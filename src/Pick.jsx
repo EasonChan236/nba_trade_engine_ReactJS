@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
+import Footer from './Footer';
 import './assets/css/style.css';
 import './assets/css/common.css';
 import './assets/css/style-responsive.css';
@@ -194,6 +195,7 @@ class Pick extends Component {
             </section>
           
          </section>
+         <Footer />
          </div>
       );
    }
