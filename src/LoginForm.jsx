@@ -9,7 +9,6 @@ import './assets/font-awesome/css/font-awesome.css';
 
 class LoginForm extends React.Component {
   render() {
-
     return (
       <div className="login-block">
         <h1>Login</h1>
