@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Header from './Header';
+import Sidebar from './Sidebar';
 import './assets/css/style.css';
 import './assets/css/common.css';
 import './assets/css/style-responsive.css';
@@ -9,6 +11,8 @@ class Pick extends Component {
    render() {
       return (
          <div>
+         <Header />
+        <Sidebar />
             <section id="main-content">
             <section class="wrapper">
                <h3><i class="fa fa-angle-right"></i> Picks</h3>

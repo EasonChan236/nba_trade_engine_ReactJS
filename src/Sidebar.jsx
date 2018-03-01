@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link }  from 'react-router-dom';
 import './assets/css/style.css';
 import './assets/css/common.css';
 import './assets/css/style-responsive.css';
@@ -17,35 +18,35 @@ class Sidebar extends Component {
 			          <li><h5 className="centered" id="my_manager">Ed Stefanski</h5></li>
 			            
 			          <li className="mt">
-			              <a href="index.html">
+						  <Link to="/app">
 			                  <i className="fa fa-dashboard"></i>
 			                  <span>Dashboard</span>
-			              </a>
+							</Link>
 			          </li>
 
 			           <li className="mt">
-			              <a href="initiate_trade.html" >
+					   <Link to="/app">
 			                  <i className="fa fa-exchange"></i>
 			                  <span>Initiate Trade</span>
-			              </a>
+			              </Link>
 			          </li>
 			          <li className="mt">
-			              <a href="trade_history.html" >
+					  	<Link to="/app">
 			                  <i className="fa fa-book"></i>
 			                  <span>Trade History</span>
-			              </a>
+			              </Link>
 			          </li>
 			      <li className="mt">
-			              <a href="roster.html" >
+				  		<Link to="/roster">
 			                  <i className="fa fa-list-ul"></i>
 			                  <span>Roster</span>
-			              </a>
+			              </Link>
 			          </li>
 			          <li className="mt">
-			              <a href="pick.html" >
+					  	<Link to="/pick">	
 			                  <i className="fa fa-male"></i>
 			                  <span>Picks</span>
-			              </a>
+			              </Link>
 			          </li>
 
 			      </ul>
