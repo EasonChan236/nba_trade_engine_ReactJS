@@ -17,9 +17,11 @@ class TradeHistory extends Component {
                <div className="row mt">
                   <div className="col-md-12">
                      <div className="content-panel">
+
         				<TradeInProcess tradesInProcess={this.props.tradesInProcess} status={this.props.status}
         								deleteTradeHandler={this.props.deleteTradeHandler}/>
         				<TradeCompleted tradesCompleted={this.props.tradesCompleted}/>
+        				
         			 </div>       
                   </div>           
                </div>    

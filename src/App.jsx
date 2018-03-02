@@ -18,7 +18,7 @@ class App extends Component {
          name: "Ed Stefanski",
          photo: '76GM',
          editing: "",
-         messages: [
+         messagesInProgress: [
             {
                message:[
                   {
@@ -47,9 +47,38 @@ class App extends Component {
                      photo: 'league'
                   },
 
-               ],
-               id :1
+               ]
             },
+            {
+               message:[
+                  {
+                     m:"lala.",
+                     sender: "Ed Stefanski",
+                     photo: '76GM'
+                  },
+                  {
+                     m:"We need a point guard.",
+                     sender: "Koby Altman",
+                     photo: 'cavsGM'
+                  },
+                  {
+                     m:"How about Markelle Fultz?",
+                     sender: "Ed Stefanski",
+                     photo: '76GM'
+                  },
+                  {
+                     m:"Deal.",
+                     sender: "Koby Altman",
+                     photo: 'cavsGM'
+                  },
+                  {
+                     m:"Wait a minute.",
+                     sender: "League",
+                     photo: 'league'
+                  },
+
+               ]
+            }
 
          ],
          checkList: [
@@ -93,12 +122,50 @@ class App extends Component {
                send: ["lala"]
             }
 
-         ]
+         ],
+         targetTeam:"",
+         targetPlayer: "",
+         targetPlayers: [],
+         targetPick:"",
+         targetPicks: [],
+         targetMoney: "",
+         yourPlayer: "",
+         yourPlayers:[],
+         yourPick: "",
+         yourPicks:[],
+         moneyOffer:"",
+         checkToSubmit: false
       }
       this.toggleHandler = this.toggleHandler.bind(this);
       this.sendMessageHandler = this.sendMessageHandler.bind(this);
       this.handleChange=this.handleChange.bind(this);
       this.deleteTradeHandler = this.deleteTradeHandler.bind(this);
+
+      this.setTargetTeam=this.setTargetTeam.bind(this);
+
+      this.setTargetPlayer=this.setTargetPlayer.bind(this);
+      this.addTargetPlayer=this.addTargetPlayer.bind(this);
+      this.clearTargetPlayer=this.clearTargetPlayer.bind(this);
+
+      this.setTargetPick=this.setTargetPick.bind(this);
+      this.addTargetPick = this.addTargetPick.bind(this);
+      this.clearTargetPick=this.clearTargetPick.bind(this);
+
+      this.setTargetMoney=this.setTargetMoney.bind(this);
+
+      this.setYourPlayer=this.setYourPlayer.bind(this);
+      this.addYourPlayer=this.addYourPlayer.bind(this);
+      this.clearYourPlayer=this.clearYourPlayer.bind(this);
+
+      this.setYourPick=this.setYourPick.bind(this);
+      this.addYourPick=this.addYourPick.bind(this);
+      this.clearYourPick=this.clearYourPick.bind(this);
+
+      this.setMoneyOffer=this.setMoneyOffer.bind(this);
+
+      this.setCheck=this.setCheck.bind(this);
+      this.initiateTrade=this.initiateTrade.bind(this);
+
 
    };
    toggleHandler(i){
@@ -121,7 +188,6 @@ class App extends Component {
             temp[0][i] = -temp[0][i];
          this.setState({status: temp});
       }
-
    };
    deleteTradeHandler(i){
       let tempStatus = this.state.status.slice();
@@ -134,9 +200,9 @@ class App extends Component {
       this.setState({tradesInProcess:tempTrade});
    };
    sendMessageHandler(e){
-      let temp = this.state.messages.slice();
+      let temp = this.state.messagesInProgress.slice();
       temp[0].message.push({m:this.state.editing, sender:this.state.name,photo:this.state.photo});
-      this.setState({messages: temp});
+      this.setState({messagesInProgress: temp});
       this.setState({editing: ""});
       //prevent refresh the page when submitting the form 
       e.preventDefault();
@@ -145,21 +211,174 @@ class App extends Component {
    handleChange(e) {
       this.setState({editing: e.target.value});
    };
-   
+
+   setTargetTeam(e){
+      this.setState({targetTeam: e.target.value});
+   };
+   setTargetPlayer(e){
+      this.setState({targetPlayer: e.target.value});
+   }
+   addTargetPlayer(){
+      if (this.state.targetPlayer !=""){
+         let temp = this.state.targetPlayers.slice();
+         let value = this.state.targetPlayer;
+         temp.push(value);
+         this.setState({targetPlayers:temp});
+         this.setState({targetPlayer:""});
+      }
+   };
+   clearTargetPlayer(){
+      var empty = [];
+      this.setState({targetPlayers:empty});
+      this.setState({targetPlayer:""});
+
+   };
+
+   setTargetPick(e){
+      this.setState({targetPick: e.target.value});
+   }
+   addTargetPick(p){
+      if (this.state.targetPick !=""){
+         let temp = this.state.targetPicks.slice();
+         temp.push(this.state.targetPick);
+         this.setState({targetPicks:temp});
+         this.setState({targetPick:""});
+      }
+   };
+   clearTargetPick(){
+      var empty = [];
+      this.setState({targetPicks:empty});
+      this.setState({targetPick:""});
+   };
+
+   setTargetMoney(e){
+      this.setState({targetMoney: e.target.value});
+   };
+
+
+   setYourPlayer(e){
+      this.setState({yourPlayer: e.target.value});
+   }
+   addYourPlayer(n){
+      if (this.state.yourPlayer !=""){
+         let temp = this.state.yourPlayers.slice();
+         temp.push(this.state.yourPlayer);
+         this.setState({yourPlayers:temp});
+         this.setState({yourPlayer:""});
+      }
+   };
+   clearYourPlayer(){
+      var empty = [];
+      this.setState({yourPlayers:empty});
+      this.setState({yourPlayer:""});
+   };
+
+   setYourPick(e){
+      this.setState({yourPick: e.target.value});
+   }
+   addYourPick(p){
+      if (this.state.yourPick !=""){
+         let temp = this.state.yourPicks.slice();
+         temp.push(this.state.yourPick);
+         this.setState({yourPicks:temp});
+         this.setState({yourPick:""});
+      }
+   };
+   clearYourPick(){
+      var empty = [];
+      this.setState({yourPicks:empty});
+      this.setState({yourPick:""});
+   };
+   setMoneyOffer(e){
+      this.setState({moneyOffer: e.target.value});
+   };
+   setCheck(e){
+      this.setState({checkToSubmit: e.target.checked});
+   };
+
+   initiateTrade(e){
+
+      if (this.state.checkToSubmit){
+         var obtain=[...this.state.targetPlayers,...this.state.targetPicks];
+         var send = [...this.state.yourPlayers,...this.state.yourPicks];
+         if (this.state.targetMoney!="")
+            obtain=[...obtain, "$"+this.state.targetMoney];
+         if (this.state.moneyOffer!="")
+            send=[...send, "$"+this.state.moneyOffer]
+
+         var messageIni = [];
+         var statusIni = [1,1,1,-1,-1,-1,-1,-1,-1,-1];
+         
+         var trade= {
+            team: this.state.targetTeam,
+            obtain:obtain,
+            send:send
+         };
+         //add a new trade history
+         let temp = this.state.tradesInProcess.slice();
+         temp.push(trade);
+         this.setState({tradesInProcess:temp});
+
+         // add new message board
+         temp = this.state.messagesInProgress.slice();
+         temp.push(messageIni);
+         this.setState({messagesInProgress:temp});
+
+         // add new status check list
+         temp = this.state.status.slice();
+         temp.push(statusIni);
+         this.setState({status:temp});
+
+         //clear the input 
+         this.clearYourPick();
+         this.clearYourPlayer();
+         this.clearTargetPlayer();
+         this.clearTargetPick();
+         this.setState({targetTeam:""});
+         this.setState({checkToSubmit:false});
+      }else{
+         alert("Please review your trade and check the box before you submit!");
+
+      }
+      e.preventDefault();
+      e.stopPropagation();
+   };
+
    render() {
       return (
          <div>
          <section id="container" >
             <Header />
             <Sidebar />
-            {/*<Roster />*/}
-            {/*<Pick />*/}
+
+            <Initiate targetPlayers={this.state.targetPlayers}  targetPlayer={this.state.targetPlayer}
+                        targetPicks={this.state.targetPicks} targetPick={this.state.targetPick}
+                        targetMoney={this.state.targetMoney}  targetTeam={this.state.targetTeam}
+
+                        yourPlayers={this.state.yourPlayers} yourPlayer={this.state.yourPlayer}
+                        yourPicks={this.state.yourPicks}  yourPick={this.state.yourPick}
+                        moneyOffer={this.state.moneyOffer} checkToSubmit={this.state.checkToSubmit} 
+                     
+                        setTargetTeam={this.setTargetTeam} setTargetPlayer={this.setTargetPlayer}
+                        addTargetPlayer={this.addTargetPlayer} clearTargetPlayer={this.clearTargetPlayer}
+                        setTargetPick={this.setTargetPick} addTargetPick={this.addTargetPick}
+                        clearTargetPick={this.clearTargetPick} setTargetMoney={this.setTargetMoney} 
+
+                        setYourPick={this.setYourPick} setYourPlayer={this.setYourPlayer}
+                        addYourPlayer={this.addYourPlayer} addYourPick={this.addYourPick}
+                        clearYourPlayer={this.clearYourPlayer} clearYourPick={this.clearYourPick}
+                        setMoneyOffer={this.setMoneyOffer}  initiateTrade={this.initiateTrade}
+                        setCheck={this.setCheck} />
             <TradeHistory status = {this.state.status} tradesInProcess={this.state.tradesInProcess}
                            tradesCompleted={this.state.tradesCompleted} deleteTradeHandler={this.deleteTradeHandler}/>
             <Todo  toggleHandler = {this.toggleHandler} checkList={this.state.checkList} 
                status = {this.state.status[0]}/> 
-            <Forum sendMessageHandler={this.sendMessageHandler } messages={this.state.messages[0].message} 
+            <Forum sendMessageHandler={this.sendMessageHandler } messages={this.state.messagesInProgress[0].message} 
                   editing={this.state.editing} handleChange={this.handleChange} />
+            <Roster />
+            <Pick />
+
+
             <Footer />
          </section>
          </div>
