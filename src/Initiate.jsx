@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link, Redirect }  from 'react-router-dom';
+
 import './assets/css/style.css';
 import './assets/css/common.css';
 import './assets/css/style-responsive.css';
@@ -7,6 +9,9 @@ import './assets/css/bootstrap.css';
 
 class Initiate extends Component {
    render() {
+      if (this.props.redirect){
+         return(<Redirect to={'/app/tradeHistory'}/>);
+      }
       return (
          <div>
         	<section id="main-content">
@@ -130,8 +135,11 @@ class Initiate extends Component {
                                 </label>
                         </div>
                         <form onSubmit={this.props.initiateTrade} id="submit_form"> 
+                     
                            <input type="submit" className="btn btn-theme" value="Submit"/>
+                           
                         </form>
+                        
                      </div>
                 
                   </div>

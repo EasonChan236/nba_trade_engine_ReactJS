@@ -23,7 +23,7 @@ class Forum extends Component {
 	                  <img className="img-circle" src={ require('./assets/img/' +m.photo +'.jpg') } width="35" height="35"  alt="General manager" />
 	                </div>
 	                <div className="details">
-	                  <div><a href="#">{m.sender}</a><br/>
+	                  <div><a href="">{m.sender}</a><br/>
 	                     <p>{m.m}</p>
 	                  </div>
 	                </div>

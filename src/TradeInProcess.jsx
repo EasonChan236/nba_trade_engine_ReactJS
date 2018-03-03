@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link }  from 'react-router-dom';
 import './assets/css/style.css';
 import './assets/css/common.css';
 import './assets/css/style-responsive.css';
@@ -13,7 +14,7 @@ class TradeInProcess extends Component {
    	for (var i =0; i< arr.length;i++){
    		var count = 0;
    		for (var j=0; j< 10; j++){
-   			if (arr[i][j]==1) count++;
+   			if (arr[i][j]===1) count++;
    		}
    		s[i]=count*10;
    	}
@@ -46,8 +47,13 @@ class TradeInProcess extends Component {
                         </div>
                      </td>
                      <td>
-                        <a className="button btn btn-success btn-xs" href="forum.html"><i className="fa fa-comment"></i></a>
-                        <a className="button btn btn-primary btn-xs" href="todo_list.html"><i className="fa fa-pencil"></i></a>
+                        <Link to={'/app/forum'}>
+                           <a className="button btn btn-success btn-xs" ><i className="fa fa-comment"></i></a>
+                        </Link>
+                        <Link to={'/app/todo'}>
+                           <a className="button btn btn-primary btn-xs" ><i className="fa fa-pencil"></i></a>
+                        </Link>
+ 
                         <a className="button btn btn-danger btn-xs" onClick={() =>this.props.deleteTradeHandler(i)}><i className="fa fa-trash-o "></i></a>
                      </td>
                   </tr>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link }  from 'react-router-dom';
 import './assets/css/style.css';
 import './assets/css/common.css';
 import './assets/css/style-responsive.css';
@@ -40,9 +41,9 @@ class TradeCompleted extends Component {
 	                    </div>
 	                 </td>
 	                 <td>
-	                    <a className="button btn btn-success btn-xs" href="forum.html"><i className="fa fa-comment"></i></a>
-	                    <a className="button btn btn-primary btn-xs" href="todo_list.html"><i className="fa fa-pencil"></i></a>
-
+	                    <Link to={'/app/forum'}>
+                           <a className="button btn btn-success btn-xs" ><i className="fa fa-comment"></i></a>
+                        </Link>
 	                 </td>
 	              </tr>
 	              )}

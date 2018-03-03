@@ -9,6 +9,7 @@ import Todo from './Todo';
 import Forum from './Forum';
 import TradeHistory from './TradeHistory';
 import Initiate from './Initiate';
+import HomePage from './HomePage';
 
 class App extends Component {
    constructor(props) {
@@ -134,7 +135,8 @@ class App extends Component {
          yourPick: "",
          yourPicks:[],
          moneyOffer:"",
-         checkToSubmit: false
+         checkToSubmit: false,
+         redirect: false
       }
       this.toggleHandler = this.toggleHandler.bind(this);
       this.sendMessageHandler = this.sendMessageHandler.bind(this);
@@ -166,11 +168,13 @@ class App extends Component {
       this.setCheck=this.setCheck.bind(this);
       this.initiateTrade=this.initiateTrade.bind(this);
 
+      this.resetDirect=this.resetDirect.bind(this);
+
 
    };
    toggleHandler(i){
       if (! this.state.status || !this.state.tradesInProcess|| !this.state.tradesCompleted||
-         this.state.tradesCompleted.length==0||this.state.tradesInProcess.length==0|| this.state.status.length ==0 ) return;
+         this.state.tradesCompleted.length===0||this.state.tradesInProcess.length===0|| this.state.status.length ===0 ) return;
       if (i===9){
          let tempCompleted = this.state.tradesCompleted.slice();
          let tempInProcess = this.state.tradesInProcess.slice();
@@ -219,7 +223,7 @@ class App extends Component {
       this.setState({targetPlayer: e.target.value});
    }
    addTargetPlayer(){
-      if (this.state.targetPlayer !=""){
+      if (this.state.targetPlayer !==""){
          let temp = this.state.targetPlayers.slice();
          let value = this.state.targetPlayer;
          temp.push(value);
@@ -238,7 +242,7 @@ class App extends Component {
       this.setState({targetPick: e.target.value});
    }
    addTargetPick(p){
-      if (this.state.targetPick !=""){
+      if (this.state.targetPick !==""){
          let temp = this.state.targetPicks.slice();
          temp.push(this.state.targetPick);
          this.setState({targetPicks:temp});
@@ -260,7 +264,7 @@ class App extends Component {
       this.setState({yourPlayer: e.target.value});
    }
    addYourPlayer(n){
-      if (this.state.yourPlayer !=""){
+      if (this.state.yourPlayer !==""){
          let temp = this.state.yourPlayers.slice();
          temp.push(this.state.yourPlayer);
          this.setState({yourPlayers:temp});
@@ -277,7 +281,7 @@ class App extends Component {
       this.setState({yourPick: e.target.value});
    }
    addYourPick(p){
-      if (this.state.yourPick !=""){
+      if (this.state.yourPick !==""){
          let temp = this.state.yourPicks.slice();
          temp.push(this.state.yourPick);
          this.setState({yourPicks:temp});
@@ -299,11 +303,13 @@ class App extends Component {
    initiateTrade(e){
 
       if (this.state.checkToSubmit){
+         this.setState({redirect: true});
+
          var obtain=[...this.state.targetPlayers,...this.state.targetPicks];
          var send = [...this.state.yourPlayers,...this.state.yourPicks];
-         if (this.state.targetMoney!="")
+         if (this.state.targetMoney!=="")
             obtain=[...obtain, "$"+this.state.targetMoney];
-         if (this.state.moneyOffer!="")
+         if (this.state.moneyOffer!=="")
             send=[...send, "$"+this.state.moneyOffer]
 
          var messageIni = [];
@@ -335,7 +341,6 @@ class App extends Component {
          this.clearTargetPlayer();
          this.clearTargetPick();
          this.setState({targetTeam:""});
-         this.setState({checkToSubmit:false});
       }else{
          alert("Please review your trade and check the box before you submit!");
 
@@ -343,15 +348,31 @@ class App extends Component {
       e.preventDefault();
       e.stopPropagation();
    };
+   resetDirect(){
+      this.setState({redirect: false});
+      this.setState({checkToSubmit: false});
+   };
 
    render() {
       return (
          <div>
          <section id="container" >
+            
             <Header />
-            <Sidebar />
+            <Sidebar/>
 
-            <Initiate targetPlayers={this.state.targetPlayers}  targetPlayer={this.state.targetPlayer}
+            <Switch>
+            <Route exact path="/app" component={HomePage}/>
+            <Route exact path="/app/todo" render={(props)=> {return (
+               <Todo 
+                        toggleHandler = {this.toggleHandler} checkList={this.state.checkList} 
+                        status = {this.state.status[0]} /> );
+               } } />
+
+            <Route exact path="/app/initiateTrade" render={(props)=> {return (
+               <Initiate 
+                        redirect={this.state.redirect}
+                        targetPlayers={this.state.targetPlayers}  targetPlayer={this.state.targetPlayer}
                         targetPicks={this.state.targetPicks} targetPick={this.state.targetPick}
                         targetMoney={this.state.targetMoney}  targetTeam={this.state.targetTeam}
 
@@ -368,18 +389,35 @@ class App extends Component {
                         addYourPlayer={this.addYourPlayer} addYourPick={this.addYourPick}
                         clearYourPlayer={this.clearYourPlayer} clearYourPick={this.clearYourPick}
                         setMoneyOffer={this.setMoneyOffer}  initiateTrade={this.initiateTrade}
-                        setCheck={this.setCheck} />
-            <TradeHistory status = {this.state.status} tradesInProcess={this.state.tradesInProcess}
-                           tradesCompleted={this.state.tradesCompleted} deleteTradeHandler={this.deleteTradeHandler}/>
-            <Todo  toggleHandler = {this.toggleHandler} checkList={this.state.checkList} 
-               status = {this.state.status[0]}/> 
-            <Forum sendMessageHandler={this.sendMessageHandler } messages={this.state.messagesInProgress[0].message} 
-                  editing={this.state.editing} handleChange={this.handleChange} />
-            <Roster />
-            <Pick />
+                        setCheck={this.setCheck}  /> );
+               } } />
 
 
+            <Route exact path="/app/tradeHistory"  render={(props)=> {return (
+               <TradeHistory 
+                        status = {this.state.status} tradesInProcess={this.state.tradesInProcess}
+                        tradesCompleted={this.state.tradesCompleted} deleteTradeHandler={this.deleteTradeHandler} 
+                        resetDirect={this.resetDirect} /> );
+               } } />
+
+
+            <Route exact path="/app/todo" render={(props)=> {return (
+               <Todo 
+                        toggleHandler = {this.toggleHandler} checkList={this.state.checkList} 
+                        status = {this.state.status[0]} /> );
+               } } />
+
+            <Route exact path="/app/forum" render={(props)=> {return (
+               <Forum 
+                        sendMessageHandler={this.sendMessageHandler } messages={this.state.messagesInProgress[0].message} 
+                        editing={this.state.editing} handleChange={this.handleChange} /> );
+               } } />  
+      
+            <Route path="/app/roster" component={Roster} />
+            <Route path="/app/pick" component = {Pick} />
+            </Switch>
             <Footer />
+            
          </section>
          </div>
       );

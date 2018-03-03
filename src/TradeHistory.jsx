@@ -8,6 +8,9 @@ import TradeInProcess from './TradeInProcess';
 import TradeCompleted from './TradeCompleted';
 
 class TradeHistory extends Component {
+  componentWillMount() {
+      this.props.resetDirect();
+   };
    render() {
       return (
          <div>
