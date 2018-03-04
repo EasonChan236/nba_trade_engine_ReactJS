@@ -1,17 +1,13 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import LoginForm from './LoginForm';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import { createHashHistory } from "history";
+import { BrowserRouter, Route } from 'react-router-dom';
 
-// render(<App />,document.getElementById('app'));
+import routes from "./routes";
 
-render((
-    <BrowserRouter>
-        <Switch>
-            <Route exact path='/' component={LoginForm} />
-            <Route path='/app' component={App} />
-        </Switch>
-    </BrowserRouter> 
-    ), document.getElementById('app')
-);
+const allRoutes = routes;
+
+ReactDOM.render(
+  allRoutes,
+  document.getElementById("app")
+)
