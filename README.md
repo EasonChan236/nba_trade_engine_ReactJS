@@ -40,7 +40,6 @@ npm test
 ## Authors
 
 * **Pengyu Chen** - [Github](https://github.com/EasonChan236)
-* **Ruitian Lin** - [LinkedIn](www.linkedin.com/in/rt-lin
-)
+* **Ruitian Lin** - [Github](https://github.com/lrt98802)
 
 
