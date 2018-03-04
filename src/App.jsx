@@ -362,59 +362,59 @@ class App extends Component {
             <Sidebar/>
 
             <Switch>
-            <Route exact path="/app" component={HomePage}/>
-            <Route exact path="/app/todo" render={(props)=> {return (
-               <Todo 
-                        toggleHandler = {this.toggleHandler} checkList={this.state.checkList} 
-                        status = {this.state.status[0]} /> );
-               } } />
+                <Route exact path="/app" component={HomePage}/>
+                <Route exact path="/app/todo" render={(props)=> {return (
+                <Todo 
+                            toggleHandler = {this.toggleHandler} checkList={this.state.checkList} 
+                            status = {this.state.status[0]} /> );
+                } } />
 
-            <Route exact path="/app/initiateTrade" render={(props)=> {return (
-               <Initiate 
-                        redirect={this.state.redirect}
-                        targetPlayers={this.state.targetPlayers}  targetPlayer={this.state.targetPlayer}
-                        targetPicks={this.state.targetPicks} targetPick={this.state.targetPick}
-                        targetMoney={this.state.targetMoney}  targetTeam={this.state.targetTeam}
+                <Route exact path="/app/initiateTrade" render={(props)=> {return (
+                <Initiate 
+                            redirect={this.state.redirect}
+                            targetPlayers={this.state.targetPlayers}  targetPlayer={this.state.targetPlayer}
+                            targetPicks={this.state.targetPicks} targetPick={this.state.targetPick}
+                            targetMoney={this.state.targetMoney}  targetTeam={this.state.targetTeam}
 
-                        yourPlayers={this.state.yourPlayers} yourPlayer={this.state.yourPlayer}
-                        yourPicks={this.state.yourPicks}  yourPick={this.state.yourPick}
-                        moneyOffer={this.state.moneyOffer} checkToSubmit={this.state.checkToSubmit} 
-                     
-                        setTargetTeam={this.setTargetTeam} setTargetPlayer={this.setTargetPlayer}
-                        addTargetPlayer={this.addTargetPlayer} clearTargetPlayer={this.clearTargetPlayer}
-                        setTargetPick={this.setTargetPick} addTargetPick={this.addTargetPick}
-                        clearTargetPick={this.clearTargetPick} setTargetMoney={this.setTargetMoney} 
+                            yourPlayers={this.state.yourPlayers} yourPlayer={this.state.yourPlayer}
+                            yourPicks={this.state.yourPicks}  yourPick={this.state.yourPick}
+                            moneyOffer={this.state.moneyOffer} checkToSubmit={this.state.checkToSubmit} 
+                        
+                            setTargetTeam={this.setTargetTeam} setTargetPlayer={this.setTargetPlayer}
+                            addTargetPlayer={this.addTargetPlayer} clearTargetPlayer={this.clearTargetPlayer}
+                            setTargetPick={this.setTargetPick} addTargetPick={this.addTargetPick}
+                            clearTargetPick={this.clearTargetPick} setTargetMoney={this.setTargetMoney} 
 
-                        setYourPick={this.setYourPick} setYourPlayer={this.setYourPlayer}
-                        addYourPlayer={this.addYourPlayer} addYourPick={this.addYourPick}
-                        clearYourPlayer={this.clearYourPlayer} clearYourPick={this.clearYourPick}
-                        setMoneyOffer={this.setMoneyOffer}  initiateTrade={this.initiateTrade}
-                        setCheck={this.setCheck}  /> );
-               } } />
-
-
-            <Route exact path="/app/tradeHistory"  render={(props)=> {return (
-               <TradeHistory 
-                        status = {this.state.status} tradesInProcess={this.state.tradesInProcess}
-                        tradesCompleted={this.state.tradesCompleted} deleteTradeHandler={this.deleteTradeHandler} 
-                        resetDirect={this.resetDirect} /> );
-               } } />
+                            setYourPick={this.setYourPick} setYourPlayer={this.setYourPlayer}
+                            addYourPlayer={this.addYourPlayer} addYourPick={this.addYourPick}
+                            clearYourPlayer={this.clearYourPlayer} clearYourPick={this.clearYourPick}
+                            setMoneyOffer={this.setMoneyOffer}  initiateTrade={this.initiateTrade}
+                            setCheck={this.setCheck}  /> );
+                } } />
 
 
-            <Route exact path="/app/todo" render={(props)=> {return (
-               <Todo 
-                        toggleHandler = {this.toggleHandler} checkList={this.state.checkList} 
-                        status = {this.state.status[0]} /> );
-               } } />
+                <Route exact path="/app/tradeHistory"  render={(props)=> {return (
+                <TradeHistory 
+                            status = {this.state.status} tradesInProcess={this.state.tradesInProcess}
+                            tradesCompleted={this.state.tradesCompleted} deleteTradeHandler={this.deleteTradeHandler} 
+                            resetDirect={this.resetDirect} /> );
+                } } />
 
-            <Route exact path="/app/forum" render={(props)=> {return (
-               <Forum 
-                        sendMessageHandler={this.sendMessageHandler } messages={this.state.messagesInProgress[0].message} 
-                        editing={this.state.editing} handleChange={this.handleChange} /> );
-               } } />  
-      
-            <Route path="/app/roster" component={Roster} />
-            <Route path="/app/pick" component = {Pick} />
+
+                <Route exact path="/app/todo" render={(props)=> {return (
+                <Todo 
+                            toggleHandler = {this.toggleHandler} checkList={this.state.checkList} 
+                            status = {this.state.status[0]} /> );
+                } } />
+
+                <Route exact path="/app/forum" render={(props)=> {return (
+                <Forum 
+                            sendMessageHandler={this.sendMessageHandler } messages={this.state.messagesInProgress[0].message} 
+                            editing={this.state.editing} handleChange={this.handleChange} /> );
+                } } />  
+        
+                <Route path="/app/roster" component={Roster} />
+                <Route path="/app/pick" component = {Pick} />
             </Switch>
             <Footer />
             

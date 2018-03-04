@@ -20,32 +20,32 @@ class Sidebar extends Component {
 			          <li className="mt">
 						  <Link to={'/app'}>
 			                  <i className="fa fa-dashboard"></i>
-			                  <span>Dashboard</span>
+			                  <span id="sidebar_Dashboard">Dashboard</span>
 							</Link>
 			          </li>
 
 			           <li className="mt">
 					   <Link to={'/app/initiateTrade'}>
 			                  <i className="fa fa-exchange"></i>
-			                  <span>Initiate Trade</span>
+			                  <span id="sidebar_IT">Initiate Trade</span>
 			              </Link>
 			          </li>
 			          <li className="mt">
 					  	<Link to={'/app/tradeHistory'}>
 			                  <i className="fa fa-book"></i>
-			                  <span>Trade History</span>
+			                  <span id="sidebar_TH">Trade History</span>
 			              </Link>
 			          </li>
 			      	  <li className="mt">
 				  		<Link to={'/app/roster'}>
 			                  <i className="fa fa-list-ul"></i>
-			                  <span>Roster</span>
+			                  <span id="sidebar_Roster">Roster</span>
 			              </Link>
 			          </li>
 			          <li className="mt">
 					  	<Link to={'/app/pick'}>	
 			                  <i className="fa fa-male"></i>
-			                  <span>Picks</span>
+			                  <span id="sidebar_Pick">Picks</span>
 			              </Link>
 			          </li>
 
