@@ -1,6 +1,6 @@
 # NBA Trade Engine
 
-This is the course project for CSE 134B at UCSD, Web Client Languages. The project is finished in React.JS and with CSS and Bootstrap
+This is the course project for CSE 134B(Web Client Languages), Winter 2018. The project is finished in React.JS and with CSS and Bootstrap
 
 ## Getting Started
 
